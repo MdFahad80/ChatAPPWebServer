@@ -26,23 +26,28 @@ const server = createServer(app);
 
 // 🌍 Allowed frontend origins for CORS (Cross-Origin Resource Sharing)
 // Define allowed frontend URLs
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://192.168.50.145:5173',
-  'http://172.27.192.1:5173'
-];
+// const allowedOrigins = [
+//   'http://localhost:5173',
+//   'http://192.168.50.145:5173',
+//   'http://172.27.192.1:5173'
+// ];
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     console.log("Request origin:", origin);
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE']
+// }));
 
 app.use(cors({
-  origin: function (origin, callback) {
-    console.log("Request origin:", origin);
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
 // 🛠 Middleware for handling JSON requests and cookies
