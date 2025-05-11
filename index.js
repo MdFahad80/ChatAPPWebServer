@@ -29,23 +29,32 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://192.168.50.145:5173',
   'http://172.27.192.1:5173',
-  'https://your-frontend.vercel.app',
-  'https://chat-app-web-client-81528t6wd-mdfahad80s-projects.vercel.app',
-  'https://chat-app-web-client-git-main-mdfahad80s-projects.vercel.app'
+  'https://chat-app-web-client-git-main-mdfahad80s-projects.vercel.app', // main
+  'https://chat-app-web-client-81528t6wd-mdfahad80s-projects.vercel.app'  // preview (example)
 ];
 
+// CORS middleware
 app.use(cors({
   origin: function (origin, callback) {
-    console.log("Request Origin:", origin);
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow non-browser tools like Postman
+    if (!origin) return callback(null, true);
+
+    // Allow exact matches or dynamic vercel preview deployments
+    if (
+      allowedOrigins.includes(origin) ||
+      /\.vercel\.app$/.test(origin)
+    ) {
       callback(null, true);
     } else {
+      console.warn('❌ CORS blocked:', origin);
       callback(new Error('Not allowed by CORS: ' + origin));
     }
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 
 // 🛠 Middleware for handling JSON requests and cookies

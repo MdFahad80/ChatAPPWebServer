@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import User from '../schema/userSchema.js'
 
 const isLogin = (req, res, next) => {
+     res.setHeader('Access-Control-Allow-Credentials', 'true');
     try {
         const token = req.cookies.jwt || req.headers.cookie.split("; ").find((cookie) => cookie.startsWith("jwt="))?.split("=")[1];
         //console.log(token);

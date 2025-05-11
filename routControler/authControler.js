@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs"
 import jwtToken from "../utils/jwtToken.js";
 
 export const SignUp = async (req, res) => {
+     res.setHeader('Access-Control-Allow-Credentials', 'true');
     try {
         const { fullname, username, email, password, gender, profilepic } = req.body
         const user = await User.findOne({ username });
@@ -48,6 +49,7 @@ export const SignUp = async (req, res) => {
 
 
 export const Login = async (req, res) => {
+     res.setHeader('Access-Control-Allow-Credentials', 'true');
     try {
         const { email, password } = req.body
         const user = await User.findOne({ email })
@@ -76,6 +78,7 @@ export const Login = async (req, res) => {
 }
 
 export const LogOut = async (req, res) => {
+     res.setHeader('Access-Control-Allow-Credentials', 'true');
     try {
         res.clearCookie('jwt', {
             path: '/',
