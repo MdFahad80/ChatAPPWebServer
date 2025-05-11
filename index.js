@@ -30,7 +30,8 @@ const allowedOrigins = [
   'http://192.168.50.145:5173',
   'http://172.27.192.1:5173',
   'https://chat-app-web-client-git-main-mdfahad80s-projects.vercel.app', // main
-  'https://chat-app-web-client-81528t6wd-mdfahad80s-projects.vercel.app'  // preview (example)
+  'https://chat-app-web-client-81528t6wd-mdfahad80s-projects.vercel.app',
+  'https://chat-app-web-client.vercel.app'  // preview (example)
 ];
 
 // CORS middleware
