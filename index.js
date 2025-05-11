@@ -75,7 +75,7 @@ app.get("/ok", (req, res) => {
 const io = new Server(server, {
   pingTimeout: 60000, // ⏳ Set timeout for inactive users (1 minute)
   cors: {
-    origin: allowedOrigins[0], // ✅ Allow requests from the frontend URL
+    origin: allowedOrigins, // ✅ Allow requests from the frontend URL
     methods: ["GET", "POST"], // ✅ Allow only these methods
   },
 });
